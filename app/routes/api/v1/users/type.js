@@ -7,8 +7,8 @@ const userProperties = {
   isActive: { type: 'boolean' },
   company: { type: 'string' },
   createdAt: { type: 'string' },
-  updatedAt: { type: 'string' }
-}
+  updatedAt: { type: 'string' },
+};
 
 const createSchema = {
   firstName: { type: 'string' },
@@ -16,10 +16,10 @@ const createSchema = {
   email: { type: 'string' },
   password: { type: 'string' },
   isActive: { type: 'boolean' },
-  company: { type: 'string' }
-}
+  company: { type: 'string' },
+};
 
-const tags = ['User']
+const tags = ['User'];
 
 const getAllUsers = {
   tags,
@@ -28,9 +28,9 @@ const getAllUsers = {
       type: 'array',
       items: {
         type: 'object',
-        properties: userProperties
-      }
-    }
+        properties: userProperties,
+      },
+    },
   },
   security: [
     {
@@ -38,11 +38,11 @@ const getAllUsers = {
         type: 'apiKey',
         in: 'header',
         name: 'Authorization',
-        description: ''
-      }
-    }
-  ]
-}
+        description: '',
+      },
+    },
+  ],
+};
 
 const getOneUser = {
   tags,
@@ -51,15 +51,15 @@ const getOneUser = {
     properties: {
       id: {
         type: 'string',
-        description: 'user id'
-      }
-    }
+        description: 'user id',
+      },
+    },
   },
   response: {
     200: {
       type: 'object',
-      properties: userProperties
-    }
+      properties: userProperties,
+    },
   },
   security: [
     {
@@ -67,22 +67,22 @@ const getOneUser = {
         type: 'apiKey',
         in: 'header',
         name: 'Authorization',
-        description: ''
-      }
-    }
-  ]
-}
+        description: '',
+      },
+    },
+  ],
+};
 
 const createOneUser = {
   tags,
   body: {
-    properties: createSchema
+    properties: createSchema,
   },
   response: {
     201: {
       type: 'object',
-      properties: userProperties
-    }
+      properties: userProperties,
+    },
   },
   security: [
     {
@@ -90,14 +90,14 @@ const createOneUser = {
         type: 'apiKey',
         in: 'header',
         name: 'Authorization',
-        description: ''
-      }
-    }
-  ]
-}
+        description: '',
+      },
+    },
+  ],
+};
 
 module.exports = {
   getAllUsers,
   getOneUser,
-  createOneUser
-}
+  createOneUser,
+};

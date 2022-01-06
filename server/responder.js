@@ -1,5 +1,5 @@
-import logger from './logger'
-import _ from 'lodash'
+import logger from './logger';
+import _ from 'lodash';
 
 function Responder() {}
 
@@ -9,11 +9,11 @@ function Responder() {}
 function sendResponse(res, status, body) {
   if (!res.headersSent) {
     if (body) {
-      return res.code(status).send(body)
+      return res.code(status).send(body);
     }
-    return res.code(status)
+    return res.code(status);
   } else {
-    logger.error('Response already sent.')
+    logger.error('Response already sent.');
   }
 }
 
@@ -22,38 +22,38 @@ function sendResponse(res, status, body) {
  * what is the result of the incomming request
  */
 Responder.success = (res, message) => {
-  message = _.isString(message) ? { message } : message
-  return sendResponse(res, 200, message)
-}
+  message = _.isString(message) ? { message } : message;
+  return sendResponse(res, 200, message);
+};
 
 Responder.created = (res, object) => {
-  return sendResponse(res, 201, object)
-}
+  return sendResponse(res, 201, object);
+};
 
 Responder.deleted = (res) => {
-  return sendResponse(res, 204)
-}
+  return sendResponse(res, 204);
+};
 
 Responder.operationFailed = (res, reason) => {
-  const status = res.status || 400
+  const status = res.status || 400;
   if (reason.name === 'SequelizeUniqueConstraintError') {
     reason = reason.errors.map((er) => {
-      let errors = {}
-      errors[er.path] = er.message
-      return errors
-    })
+      let errors = {};
+      errors[er.path] = er.message;
+      return errors;
+    });
   } else {
-    reason = reason.message || reason
+    reason = reason.message || reason;
   }
-  delete reason.status
-  let errors = [reason]
+  delete reason.status;
+  let errors = [reason];
   if (reason instanceof Object)
     errors = _.flatten(
       _.flatMap(reason).map((object) => {
-        return _.flatMap(object)
-      })
-    )
-  return sendResponse(res, status, { reason, errors })
-}
+        return _.flatMap(object);
+      }),
+    );
+  return sendResponse(res, status, { reason, errors });
+};
 
-export default Responder
+export default Responder;

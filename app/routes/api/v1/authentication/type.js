@@ -7,13 +7,13 @@ const userProperties = {
   isActive: { type: 'boolean' },
   company: { type: 'string' },
   created_at: { type: 'string' },
-  updated_at: { type: 'string' }
-}
+  updated_at: { type: 'string' },
+};
 
 const loginSchema = {
   email: { type: 'string' },
-  password: { type: 'string' }
-}
+  password: { type: 'string' },
+};
 
 const loginResponse = {
   user: {
@@ -26,27 +26,27 @@ const loginResponse = {
       isActive: { type: 'boolean' },
       company: { type: 'string' },
       created_at: { type: 'string' },
-      updated_at: { type: 'string' }
-    }
+      updated_at: { type: 'string' },
+    },
   },
-  access_token: { type: 'string' }
-}
+  access_token: { type: 'string' },
+};
 
-const tags = ['Authentication']
+const tags = ['Authentication'];
 
 const LoginUser = {
   tags,
   body: {
-    properties: loginSchema
+    properties: loginSchema,
   },
   response: {
     200: {
       type: 'object',
-      properties: loginResponse
-    }
-  }
-}
+      properties: loginResponse,
+    },
+  },
+};
 
 module.exports = {
-  LoginUser
-}
+  LoginUser,
+};

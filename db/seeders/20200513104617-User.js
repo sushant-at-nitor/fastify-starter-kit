@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.bulkInsert(
@@ -12,12 +12,12 @@ module.exports = {
           isActive: true,
           company: 'Alphabet',
           createdAt: new Date(),
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       ],
-      {}
+      {},
     ),
 
   down: (queryInterface, Sequelize) =>
-    queryInterface.bulkDelete('Users', null, {})
-}
+    queryInterface.bulkDelete('Users', null, {}),
+};

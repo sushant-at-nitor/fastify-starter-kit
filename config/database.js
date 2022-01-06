@@ -1,4 +1,4 @@
-const config = require('../config/app')
+const config = require('../config/app');
 
 const dbConfig = {
   username: config.get('db.user'),
@@ -8,12 +8,12 @@ const dbConfig = {
   port: config.get('db.port'),
   dialect: 'postgres',
   seederStorage: 'sequelize',
-  seederStorageTableName: 'SequelizeData'
-}
+  seederStorageTableName: 'SequelizeData',
+};
 
 module.exports = {
   development: dbConfig,
   test: dbConfig,
   staging: dbConfig,
-  production: dbConfig
-}
+  production: dbConfig,
+};
