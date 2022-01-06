@@ -17,7 +17,9 @@ coverage
 yarn-error.log
 
 #packager logs
-yarn.lock
+# yarn.lock
 
 .node-xmlhttprequest*
+
+.vscode/
 

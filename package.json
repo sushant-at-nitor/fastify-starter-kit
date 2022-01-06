@@ -13,8 +13,8 @@
   },
   "lint-staged": {
     "*.{js,css,scss}": [
-      "yarn prettier",
-      "yarn run-lint",
+      "yarn format",
+      "yarn lint:fix",
       "git add"
     ]
   },
@@ -23,8 +23,9 @@
     "build": "mkdir dist && babel ./ -s -d dist",
     "start:prod": "./dist/bin/www",
     "start": "nodemon ./bin/dev",
-    "prettier": "prettier \"**/*.{js,css}\" --write",
-    "run-lint": "eslint --fix ."
+    "format": "prettier \"**/*.{js,css}\" --write",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -34,34 +35,35 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "babelify": "^10.0.0",
-    "convict": "^5.2.0",
     "cross-env": "^7.0.0",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.0.0",
-    "eslint-config-prettier": "^6.11.0",
-    "fastify": "^2.12.0",
-    "fastify-autoload": "^1.2.2",
-    "fastify-blipp": "^2.1.0",
-    "fastify-cors": "^3.0.2",
-    "fastify-helmet": "^3.0.2",
-    "fastify-http-proxy": "^3.0.0",
-    "fastify-no-icon": "^3.0.0",
-    "fastify-plugin": "^1.6.1",
-    "fastify-swagger": "^2.5.1",
-    "husky": "^4.2.5",
-    "jsonwebtoken": "^8.5.1",
-    "lint-staged": "^10.2.2",
-    "make-promises-safe": "^5.1.0",
-    "nodemon": "^2.0.3",
-    "pg": "^8.1.0",
-    "prettier": "^2.0.5",
-    "qs": "^6.9.1",
-    "raven": "^2.6.4",
-    "sequelize": "^5.21.8",
-    "sequelize-cli": "^5.5.1",
-    "winston": "^3.2.1"
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.5",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "bcrypt": "^4.0.1"
+    "bcrypt": "^5.0.1",
+    "convict": "^6.2.1",
+    "dotenv": "^10.0.0",
+    "fastify": "^3.25.3",
+    "fastify-autoload": "^3.9.0",
+    "fastify-blipp": "^3.1.0",
+    "fastify-cors": "^6.0.2",
+    "fastify-helmet": "^5.3.2",
+    "fastify-http-proxy": "^6.2.1",
+    "fastify-no-icon": "^4.0.0",
+    "fastify-plugin": "^3.0.0",
+    "fastify-swagger": "^4.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "make-promises-safe": "^5.1.0",
+    "middie": "^5.4.0",
+    "nodemon": "^2.0.3",
+    "pg": "^8.1.0",
+    "qs": "^6.9.1",
+    "raven": "^2.6.4",
+    "sequelize": "^6.12.5",
+    "sequelize-cli": "^6.3.0",
+    "winston": "^3.2.1"
   }
 }

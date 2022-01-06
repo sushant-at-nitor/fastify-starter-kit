@@ -19,7 +19,14 @@
     }
   },
   "rules": {
-    "space-before-function-paren": "warn",
+    "space-before-function-paren": [
+      "warn",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
     "no-console": "warn",
     "no-undef": "error",
     "no-unused-vars": "warn"

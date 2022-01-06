@@ -1,28 +1,27 @@
 import bcrypt from 'bcrypt'
-import db from '../../models/index';
+import db from '../../models/index'
 
-const User = db.User;
+const User = db.User
 
 const userService = {
-  async getAll () {
-    return await User.findAll();
+  async getAll() {
+    return await User.findAll()
   },
-  async getUser (id) {
-    return await User.findOne({where: {id: id}});
+  async getUser(id) {
+    return await User.findOne({ where: { id: id } })
   },
-  async createUser (user) {
-    user.password = bcrypt.hashSync(user.password
-      , bcrypt.genSaltSync(8))
+  async createUser(user) {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8))
     return await User.create(user)
   },
-  async loginUser (req) {
-    let user = await User.findOne({ where: { email: req.email}})
-    if(user) {
-      if(bcrypt.compareSync(req.password, user.password)) {
-        return user;
+  async loginUser(req) {
+    let user = await User.findOne({ where: { email: req.email } })
+    if (user) {
+      if (bcrypt.compareSync(req.password, user.password)) {
+        return user
       }
     }
-    return ;
+    return
   }
 }
 

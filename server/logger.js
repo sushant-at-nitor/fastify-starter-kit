@@ -34,25 +34,25 @@ const logger = winston.createLogger({
 })
 
 export default class Logger {
-  static info (logTitle, argHash) {
+  static info(logTitle, argHash) {
     this.log('info', logTitle, argHash)
   }
 
-  static debug (logTitle, argHash) {
+  static debug(logTitle, argHash) {
     this.log('debug', logTitle, argHash)
   }
 
-  static error (logTitle, argHash) {
+  static error(logTitle, argHash) {
     this.log('error', logTitle, argHash)
   }
 
-  static log (logType, logTitle, argHash) {
+  static log(logType, logTitle, argHash) {
     const allArgs = Object.assign({ logTitle }, argHash)
     const logMessage = this.buildMessage(allArgs)
     this.writeToLog(logType, logTitle, logMessage, argHash)
   }
 
-  static writeToLog (logType, logTitle, logMessage, argHash) {
+  static writeToLog(logType, logTitle, logMessage, argHash) {
     if (argHash && ['start', 'around'].indexOf(argHash.wrap) !== -1) {
       logger[logType](this.generateWrapStr(logTitle, 'START'))
     } else if (argHash && ['end', 'around'].indexOf(argHash.wrap) !== -1) {
@@ -62,13 +62,13 @@ export default class Logger {
     }
   }
 
-  static generateWrapStr (logTitle, seperatorType) {
+  static generateWrapStr(logTitle, seperatorType) {
     return `${seperatorType}${'='.repeat(
       15
     )}${logTitle.toUpperCase()}${'='.repeat(15)}${seperatorType}`
   }
 
-  static buildMessage (logAttrs) {
+  static buildMessage(logAttrs) {
     let msg = [`${logAttrs.logTitle} => `]
     if (logAttrs.klass) {
       msg.push('Class:', logAttrs.klass.name, ',')

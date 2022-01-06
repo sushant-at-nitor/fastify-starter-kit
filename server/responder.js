@@ -1,12 +1,12 @@
 import logger from './logger'
 import _ from 'lodash'
 
-function Responder () {}
+function Responder() {}
 
 /*
  * This method sends the response to the client.
  */
-function sendResponse (res, status, body) {
+function sendResponse(res, status, body) {
   if (!res.headersSent) {
     if (body) {
       return res.code(status).send(body)
@@ -30,14 +30,14 @@ Responder.created = (res, object) => {
   return sendResponse(res, 201, object)
 }
 
-Responder.deleted = res => {
+Responder.deleted = (res) => {
   return sendResponse(res, 204)
 }
 
 Responder.operationFailed = (res, reason) => {
-  const status =  res.status || 400
+  const status = res.status || 400
   if (reason.name === 'SequelizeUniqueConstraintError') {
-    reason = reason.errors.map(er => {
+    reason = reason.errors.map((er) => {
       let errors = {}
       errors[er.path] = er.message
       return errors
@@ -49,7 +49,7 @@ Responder.operationFailed = (res, reason) => {
   let errors = [reason]
   if (reason instanceof Object)
     errors = _.flatten(
-      _.flatMap(reason).map(object => {
+      _.flatMap(reason).map((object) => {
         return _.flatMap(object)
       })
     )

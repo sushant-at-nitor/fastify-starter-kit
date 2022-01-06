@@ -73,7 +73,7 @@ const config = convict({
     format: String,
     default: 'nutech secret key',
     env: 'SECRET_KEY'
-  },
+  }
 })
 
 config.validate({ allowed: 'strict' })

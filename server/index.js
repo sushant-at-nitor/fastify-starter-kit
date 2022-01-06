@@ -6,31 +6,42 @@ import Fastify from 'fastify'
 import nodeServer from './app'
 import config from '../config/app'
 
-export default function start () {
-  const port = config.get('port')
-  const env = process.env.NODE_ENV
-
+async function build() {
   const fastify = Fastify(nodeServer.options)
-  fastify.register(nodeServer)
+
+  await fastify.register(require('middie'), {
+    hook: 'onRequest' // default
+  })
+
+  await fastify.register(nodeServer)
 
   if (process.env.NODE_ENV !== 'production') {
     const blipp = require('fastify-blipp')
-    fastify.register(blipp)
+    await fastify.register(blipp)
   }
 
-  fastify.log.debug(`Initializing API`)
-  fastify.log.info(`Server Name : ${config.get('app.name')}`)
-  fastify.log.info(`Environment  : ${env || 'development'}`)
-  fastify.log.info(`App Port : ${port}`)
-  fastify.log.info(`Process Id : ${process.pid}`)
+  return fastify
+}
 
-  fastify.listen(port, '::', err => {
-    if (err) {
-      fastify.log.error(err)
-      process.exit(1)
-    }
-    if (process.env.NODE_ENV !== 'production') {
-      fastify.blipp()
-    }
-  })
+export default function start() {
+  const port = config.get('port')
+  const env = process.env.NODE_ENV
+  build()
+    .then((fastify) => {
+      fastify.log.debug(`Initializing API`)
+      fastify.log.info(`Server Name : ${config.get('app.name')}`)
+      fastify.log.info(`Environment  : ${env || 'development'}`)
+      fastify.log.info(`App Port : ${port}`)
+      fastify.log.info(`Process Id : ${process.pid}`)
+      fastify.listen(port, '::', (err) => {
+        if (err) {
+          fastify.log.error(err)
+          process.exit(1)
+        }
+        if (process.env.NODE_ENV !== 'production') {
+          fastify.blipp()
+        }
+      })
+    })
+    .catch(console.log)
 }

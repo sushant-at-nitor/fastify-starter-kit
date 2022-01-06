@@ -36,4 +36,3 @@ function sequelizeDB(fastify, options, next) {
 }
 
 export default fastifyPlugin(sequelizeDB)
-

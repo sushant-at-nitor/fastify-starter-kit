@@ -11,7 +11,6 @@ const dbConfig = {
   seederStorageTableName: 'SequelizeData'
 }
 
-
 module.exports = {
   development: dbConfig,
   test: dbConfig,

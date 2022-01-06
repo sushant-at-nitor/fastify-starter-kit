@@ -9,7 +9,7 @@ const Helper = {
    * @param {string} password
    * @returns {string} returns hashed password
    */
-  hashPassword (password) {
+  hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
   },
   /**
@@ -18,7 +18,7 @@ const Helper = {
    * @param {string} password
    * @returns {Boolean} return True or False
    */
-  comparePassword (hashPassword, password) {
+  comparePassword(hashPassword, password) {
     return bcrypt.compareSync(password, hashPassword)
   },
   /**
@@ -26,11 +26,11 @@ const Helper = {
    * @param {string} email
    * @returns {Boolean} True or False
    */
-  isValidEmail (email) {
+  isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email)
   },
 
-  generateToken (user) {
+  generateToken(user) {
     const token = jwt.sign(
       {
         userId: user.id,

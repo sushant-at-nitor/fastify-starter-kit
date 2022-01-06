@@ -7,6 +7,7 @@ import cors from 'fastify-cors'
 import Raven from './raven'
 import logger from './logger'
 
+// eslint-disable-next-line space-before-function-paren
 export default function NodeServer(fastify, opts, next) {
   fastify.use(Raven.requestHandler())
   fastify.register(cors, {
@@ -27,7 +28,7 @@ export default function NodeServer(fastify, opts, next) {
     options: { ...opts }
   })
 
-  fastify.register(require('../app/routes/api'), { prefix: 'api/v1' });
+  fastify.register(require('../app/routes/api'), { prefix: 'api/v1' })
 
   fastify.setErrorHandler(function errorHandler(err, req, reply) {
     Raven.errorHandler(err, req)

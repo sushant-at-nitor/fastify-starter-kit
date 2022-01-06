@@ -5,5 +5,4 @@ const apiRoutes = async (app) => {
   app.register(require('./v1/authentication'))
 }
 
-
 module.exports = apiRoutes
