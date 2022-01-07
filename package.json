@@ -1,7 +1,7 @@
 {
   "name": "node-boilerplate",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "author": "Antara",
   "license": "ISC",
   "private": true,
@@ -14,18 +14,18 @@
   "lint-staged": {
     "*.{js,css,scss}": [
       "yarn format",
-      "yarn lint:fix",
-      "git add"
+      "yarn lint:fix"
     ]
   },
   "scripts": {
-    "test": "node --inspect=0.0.0.0:6858 node_modules/jest/bin/jest.js",
+    "test": "node --inspect=0.0.0.0:6858 node_modules/.bin/jest",
     "build": "mkdir dist && babel ./ -s -d dist",
-    "start:prod": "./dist/bin/www",
+    "start:prod": "./bin/www",
     "start": "nodemon ./bin/dev",
     "format": "prettier \"**/*.{js,css}\" --write",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -38,9 +38,11 @@
     "cross-env": "^7.0.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
+    "jest": "^27.4.7",
     "lint-staged": "^12.1.5",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "supertest": "^6.1.6"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
