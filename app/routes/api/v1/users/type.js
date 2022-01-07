@@ -19,6 +19,17 @@ const createSchema = {
   company: { type: 'string' },
 };
 
+const security = [
+  {
+    JWT: {
+      type: 'apiKey',
+      in: 'header',
+      name: 'Authorization',
+      description: '',
+    },
+  },
+];
+
 const tags = ['User'];
 
 const getAllUsers = {
@@ -32,16 +43,7 @@ const getAllUsers = {
       },
     },
   },
-  security: [
-    {
-      JWT: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        description: '',
-      },
-    },
-  ],
+  security,
 };
 
 const getOneUser = {
@@ -61,16 +63,7 @@ const getOneUser = {
       properties: userProperties,
     },
   },
-  security: [
-    {
-      JWT: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        description: '',
-      },
-    },
-  ],
+  security,
 };
 
 const createOneUser = {
@@ -84,20 +77,7 @@ const createOneUser = {
       properties: userProperties,
     },
   },
-  security: [
-    {
-      JWT: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        description: '',
-      },
-    },
-  ],
+  security,
 };
 
-module.exports = {
-  getAllUsers,
-  getOneUser,
-  createOneUser,
-};
+export { getAllUsers, getOneUser, createOneUser };

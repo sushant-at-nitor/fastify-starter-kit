@@ -22,7 +22,7 @@ module.exports = {
       { url: 'https://sta.your-site.com', description: 'staging' },
       { url: 'https://pro.your-site.com', description: 'production' },
     ],
-    schemes: ['http'],
+    schemes: ['http', 'https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [{ name: 'User', description: 'User related end-points' }],
