@@ -28,6 +28,8 @@ export default function NodeServer(fastify, opts, next) {
     options: { ...opts },
   });
 
+  fastify.register(require('../app/routes/healthcheck'));
+  // fastify.register(require('../app/routes/docs'));
   fastify.register(require('../app/routes/api'), { prefix: 'api/v1' });
 
   fastify.setErrorHandler(function errorHandler(err, req, reply) {
