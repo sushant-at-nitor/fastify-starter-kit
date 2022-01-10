@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "node --inspect=0.0.0.0:6858 node_modules/.bin/jest",
-    "build": "mkdir dist && babel ./ -s -d dist",
+    "build": "yarn clean && babel . --out-dir dist --ignore node_modules",
+    "clean": "rimraf dist && mkdir dist",
     "start:prod": "./bin/www",
     "start": "nodemon ./bin/dev",
     "format": "prettier \"**/*.{js,css}\" --write",
@@ -42,6 +43,7 @@
     "jest": "^27.4.7",
     "lint-staged": "^12.1.5",
     "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "supertest": "^6.1.6"
   },
   "dependencies": {
